@@ -100,21 +100,21 @@
     </Class>
     <Class name="ConstantDataManager" package="" visibility="public" xPosition="827.0" yPosition="37.0">
       <Fields>
-        <Field name="MAXNe" type="int" visibility="private" isFinal="true"/>
+        <Field name="MAX" type="int" visibility="private" isFinal="true"/>
       </Fields>
       <Constructors/>
       <Methods/>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <UseRelation name="solucion" source="Pregunta" target="Respuesta" sourceCardinality="1..*" targetCardinality="1..*"/>
-    <HasRelation name="tema" source="Pregunta" target="Tema" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
-    <HasRelation name="tema" source="Tema" target="Materia" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <IsRelation name="is" source="preguntaAbierta" target="Pregunta"/>
-    <UseRelation name="solicita " source="Usuario" target="Cuestionario" sourceCardinality="1..1" targetCardinality="1..*"/>
     <IsRelation name="is" source="PreguntaSeleccionMultiple" target="Pregunta"/>
-    <IsRelation name="is" source="PreguntaFalsoVerdadero" target="Pregunta"/>
-    <HasRelation name="pregunta" source="Cuestionario" target="Pregunta" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="tema" source="Tema" target="Materia" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <UseRelation name="solicita " source="Usuario" target="Cuestionario" sourceCardinality="1..1" targetCardinality="1..*"/>
     <UseRelation name="usa" source="Cuestionario" target="ConstantDataManager" sourceCardinality="1..*" targetCardinality="1..1"/>
+    <HasRelation name="pregunta" source="Cuestionario" target="Pregunta" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <IsRelation name="is" source="PreguntaFalsoVerdadero" target="Pregunta"/>
+    <UseRelation name="solucion" source="Pregunta" target="Respuesta" sourceCardinality="1..*" targetCardinality="1..*"/>
+    <IsRelation name="is" source="preguntaAbierta" target="Pregunta"/>
+    <HasRelation name="tema" source="Pregunta" target="Tema" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
   </ClassDiagramRelations>
 </ClassDiagram>
