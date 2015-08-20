@@ -2,7 +2,7 @@
 
 <ClassDiagram name="GeneradorExamenes">
   <ClassDiagramComponents>
-    <Class name="usuario" package="" visibility="public" xPosition="20.0" yPosition="20.0">
+    <Class name="Usuario" package="" visibility="public" xPosition="20.0" yPosition="20.0">
       <Fields>
         <Field name="identificacion" type="int" visibility="private"/>
         <Field name="nombre" type="string" visibility="private"/>
@@ -12,7 +12,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="cuestionario" package="" visibility="public" xPosition="270.0" yPosition="20.0">
+    <Class name="Cuestionario" package="" visibility="public" xPosition="270.0" yPosition="4.0">
       <Fields>
         <Field name="cantPreguntas" type="int" visibility="private"/>
         <Field name="complejidad" type="string" visibility="private"/>
@@ -36,10 +36,10 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="pregunta" package="" visibility="public" isAbstract="true" xPosition="374.0" yPosition="326.0">
+    <Class name="Pregunta" package="" visibility="public" isAbstract="true" xPosition="374.0" yPosition="326.0">
       <Fields>
         <Field name="complejidad" type="int" visibility="private"/>
-        <Field name="tema" type="tema" visibility="private"/>
+        <Field name="tema" type="Tema" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public"/>
@@ -48,17 +48,17 @@
         <Method name="traerRespuesta" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="tema" package="" visibility="public" xPosition="700.0" yPosition="282.0">
+    <Class name="Tema" package="" visibility="public" xPosition="700.0" yPosition="282.0">
       <Fields>
         <Field name="tema" type="string" visibility="private"/>
-        <Field name="materia" type="materia" visibility="private"/>
+        <Field name="materia" type="Materia" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public"/>
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="materia" package="" visibility="public" xPosition="915.0" yPosition="196.0">
+    <Class name="Materia" package="" visibility="public" xPosition="915.0" yPosition="196.0">
       <Fields>
         <Field name="materia" type="string" visibility="private"/>
         <Field name="descripcion" type="string" visibility="private"/>
@@ -68,7 +68,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="preguntaFalsoVerdadero" package="" visibility="public" xPosition="20.0" yPosition="507.0">
+    <Class name="PreguntaFalsoVerdadero" package="" visibility="public" xPosition="20.0" yPosition="507.0">
       <Fields/>
       <Constructors/>
       <Methods/>
@@ -80,7 +80,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="preguntaSeleccionMultiple" package="" visibility="public" xPosition="628.0" yPosition="507.0">
+    <Class name="PreguntaSeleccionMultiple" package="" visibility="public" xPosition="628.0" yPosition="507.0">
       <Fields>
         <Field name="cantRespuestasCorrectas" type="int" visibility="private"/>
         <Field name="tipoRespuesta" type="string" visibility="private"/>
@@ -88,7 +88,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="respuesta" package="" visibility="public" xPosition="20.0" yPosition="236.0">
+    <Class name="Respuesta" package="" visibility="public" xPosition="20.0" yPosition="236.0">
       <Fields>
         <Field name="descripcion" type="string" visibility="private"/>
         <Field name="veracidad" type="bool" visibility="private"/>
@@ -98,23 +98,23 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="constantDataManager" package="" visibility="public" xPosition="827.0" yPosition="37.0">
+    <Class name="ConstantDataManager" package="" visibility="public" xPosition="827.0" yPosition="37.0">
       <Fields>
-        <Field name="MAXN" type="int" visibility="private" isFinal="true"/>
+        <Field name="MAXNe" type="int" visibility="private" isFinal="true"/>
       </Fields>
       <Constructors/>
       <Methods/>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="tema" source="tema" target="materia" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
-    <IsRelation name="is" source="preguntaAbierta" target="pregunta"/>
-    <UseRelation name="solicita " source="usuario" target="cuestionario" sourceCardinality="1..1" targetCardinality="1..*"/>
-    <UseRelation name="usa" source="cuestionario" target="constantDataManager" sourceCardinality="1..*" targetCardinality="1..1"/>
-    <UseRelation name="solucion" source="pregunta" target="respuesta" sourceCardinality="1..*" targetCardinality="1..*"/>
-    <HasRelation name="tema" source="pregunta" target="tema" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
-    <IsRelation name="is" source="preguntaFalsoVerdadero" target="pregunta"/>
-    <HasRelation name="preguntas" source="pregunta" target="cuestionario" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
-    <IsRelation name="is" source="preguntaSeleccionMultiple" target="pregunta"/>
+    <UseRelation name="solucion" source="Pregunta" target="Respuesta" sourceCardinality="1..*" targetCardinality="1..*"/>
+    <HasRelation name="tema" source="Pregunta" target="Tema" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <HasRelation name="tema" source="Tema" target="Materia" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <IsRelation name="is" source="preguntaAbierta" target="Pregunta"/>
+    <UseRelation name="solicita " source="Usuario" target="Cuestionario" sourceCardinality="1..1" targetCardinality="1..*"/>
+    <IsRelation name="is" source="PreguntaSeleccionMultiple" target="Pregunta"/>
+    <IsRelation name="is" source="PreguntaFalsoVerdadero" target="Pregunta"/>
+    <HasRelation name="pregunta" source="Cuestionario" target="Pregunta" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <UseRelation name="usa" source="Cuestionario" target="ConstantDataManager" sourceCardinality="1..*" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
