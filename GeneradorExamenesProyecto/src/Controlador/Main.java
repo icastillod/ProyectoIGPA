@@ -2,17 +2,22 @@
 package Controlador;
 
 import Modelo.Archivo;
+import Vista.GraUserInterface;
+import Modelo.Tema;
 
-/*public class Main {
-
-    public static void main(String[] args) {
-        //leer un TXT
+public class Main 
+{
+    public static void main(String args[]) 
+    {
         
-        //Archivo a = new Archivo();
-        //String s1 = a.leerGrafico();//Ruta del A
         
-        //System.out.println(s1);
         
-    }
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
+                new GraUserInterface().setVisible(true);
+            }
+        });
+    } 
 }
-*/

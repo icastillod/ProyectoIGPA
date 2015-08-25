@@ -45,7 +45,8 @@ public class GraUserInterface extends javax.swing.JFrame
 	this.setResizable(false);
 	inicializar();
 	setPositions();
-        //bloqueos();
+        bloqueos();
+        materiasLista();
 		
 	contenedor = getContentPane();
 	contenedor.setLayout(null);
@@ -184,8 +185,17 @@ public class GraUserInterface extends javax.swing.JFrame
         tfPregMedia.setVisible(false);
         tfPregInteresante.setVisible(false);
     }
+    
+    private void materiasLista()
+    {
+        cbMateria.addItem(" ");
+        cbMateria.addItem("Sistemas Naturales");
+        cbMateria.addItem("Biologia");
+        cbMateria.addItem("Microbiologia");
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                           
-    public static void main(String args[]) 
+    /*public static void main(String args[]) 
     {
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
@@ -194,6 +204,6 @@ public class GraUserInterface extends javax.swing.JFrame
                 new GraUserInterface().setVisible(true);
             }
         });
-    }          
+    } */         
 }
 
