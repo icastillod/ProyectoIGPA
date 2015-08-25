@@ -193,17 +193,6 @@ public class GraUserInterface extends javax.swing.JFrame
         cbMateria.addItem("Biologia");
         cbMateria.addItem("Microbiologia");
     }
-    
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                           
-    /*public static void main(String args[]) 
-    {
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            public void run() 
-            {
-                new GraUserInterface().setVisible(true);
-            }
-        });
-    } */         
+        
 }
 
