@@ -1,5 +1,6 @@
 package Vista;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import javax.swing.*;
 
 public class GraUserInterface extends javax.swing.JFrame 
@@ -15,7 +16,7 @@ public class GraUserInterface extends javax.swing.JFrame
     private JLabel lblCantTotalPreg;
     private JLabel lblCantExamen;
     private JLabel lblTipoPregunta;
-    private JLabel lblDetalleTipoPregunta;
+    //private JLabel lblDetalleTipoPregunta;
     private JButton btGenerarExam;
     private JButton btcargarpreguntas;
     private JComboBox cbMateria;
@@ -36,7 +37,7 @@ public class GraUserInterface extends javax.swing.JFrame
     private JTextField tfPregFacil;
     private JTextField tfPregMedia;
     private JTextField tfPregInteresante;
-    private JPanel jpTemas;
+    
         
     public GraUserInterface() 
     {
@@ -45,7 +46,7 @@ public class GraUserInterface extends javax.swing.JFrame
 	this.setResizable(false);
 	inicializar();
 	setPositions();
-        bloqueos();
+        //bloqueos();
         materiasLista();
 		
 	contenedor = getContentPane();
@@ -62,7 +63,7 @@ public class GraUserInterface extends javax.swing.JFrame
         lblCantTotalPreg.setText("Numero total de Preguntas:");
         lblCantExamen.setText("Cantidad Exámenes:");
         lblTipoPregunta.setText("Tipo de Preguntas:");
-        lblDetalleTipoPregunta.setText("Tipo Detalle Tipo Preguntas:");
+        //lblDetalleTipoPregunta.setText("Tipo Detalle Tipo Preguntas:");
         areaArchivo.setText("Cuestionarios Generados");
         btGenerarExam.setText("GENERAR EXAMEN");
         btcargarpreguntas.setText("CARGAR PREGUNTAS");
@@ -70,9 +71,9 @@ public class GraUserInterface extends javax.swing.JFrame
         chComplFacil.setText("Facil");
         chComplMedia.setText("Media");
         chComplInteresante.setText("Interesante");
-        chTema1.setText("T1");
-        chTema2.setText("T2");
-        chTema3.setText("T3");
+        chTema1.setText("");
+        chTema2.setText("");
+        chTema3.setText("");
         
         scrollFuente.setViewportView(areaArchivo);
 	contenedor.add(lblTitulo);
@@ -85,7 +86,7 @@ public class GraUserInterface extends javax.swing.JFrame
 	contenedor.add(lblNumPregXCompl);
 	contenedor.add(lblCantTotalPreg);
 	contenedor.add(lblTipoPregunta);
-        contenedor.add(lblDetalleTipoPregunta);
+        //contenedor.add(lblDetalleTipoPregunta);
 	contenedor.add(scrollFuente);
 	contenedor.add(chComplFacil);
 	contenedor.add(chComplMedia);
@@ -100,8 +101,7 @@ public class GraUserInterface extends javax.swing.JFrame
         contenedor.add(tfPregMedia);
         contenedor.add(tfPregInteresante);
         contenedor.add(cbTipoPregunta);
-        contenedor.add(cbDetalleTipoPregunta);
-        contenedor.add(jpTemas);
+        //contenedor.add(cbDetalleTipoPregunta);
         contenedor.add(chTema1);
         contenedor.add(chTema2);
         contenedor.add(chTema3);
@@ -118,7 +118,7 @@ public class GraUserInterface extends javax.swing.JFrame
         lblCantTotalPreg = new JLabel();
         lblCantExamen = new JLabel();
         lblTipoPregunta = new JLabel();
-        lblDetalleTipoPregunta = new JLabel();
+        //lblDetalleTipoPregunta = new JLabel();
         btGenerarExam = new JButton();
         btcargarpreguntas = new JButton();
         cbMateria = new JComboBox();
@@ -129,7 +129,7 @@ public class GraUserInterface extends javax.swing.JFrame
         chTema2 = new JCheckBox();
         chTema3 = new JCheckBox();
         cbTipoPregunta = new JComboBox();
-        cbDetalleTipoPregunta = new JComboBox();
+        //cbDetalleTipoPregunta = new JComboBox();
         lstTema = new JList();
         areaArchivo = new JTextArea();
 	scrollFuente = new JScrollPane();
@@ -140,7 +140,14 @@ public class GraUserInterface extends javax.swing.JFrame
         tfPregFacil = new JTextField();
         tfPregMedia = new JTextField();
         tfPregInteresante = new JTextField();
-        jpTemas = new JPanel();
+        
+        cbMateria.addItemListener(new java.awt.event.ItemListener() {
+            @Override
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMateriasItemStateChanged(evt);
+            }
+        });
+        
     }
     
     private void setPositions() 
@@ -155,18 +162,15 @@ public class GraUserInterface extends javax.swing.JFrame
         chComplFacil.setBounds(20, 105, 100, 20);
         chComplMedia.setBounds(20, 125, 100, 20);
         chComplInteresante.setBounds(20, 145, 100, 20);
-        tfPregFacil.setBounds(130, 105, 30, 20);
-        tfPregMedia.setBounds(130, 125, 30, 20);
-        tfPregInteresante.setBounds(130, 145, 30, 20);
-        lblCantTotalPreg.setBounds(15, 165, 220, 20);
+        tfPregFacil.setBounds(180, 105, 30, 20);
+        tfPregMedia.setBounds(180, 125, 30, 20);
+        tfPregInteresante.setBounds(180, 145, 30, 20);
         //tfPregInteresante.setBounds(160, 170, 30, 20);
 	lblTipoPregunta.setBounds(570,60,220,20);
         cbTipoPregunta.setBounds(570,85,200,20); 
-        lblDetalleTipoPregunta.setBounds(785,60,220,20);
-        cbDetalleTipoPregunta.setBounds(785,85,200,20);
+        //lblDetalleTipoPregunta.setBounds(785,60,220,20);
+        //cbDetalleTipoPregunta.setBounds(785,85,200,20);
         lblTema.setBounds(350,60,100,20);
-        jpTemas.setBounds(350,85,200,70);
-        jpTemas.setBackground(Color.WHITE);
         chTema1.setBounds(355, 90, 190, 20);
         chTema2.setBounds(355, 110, 190, 20);
         chTema3.setBounds(355, 130, 190, 20);
@@ -188,11 +192,39 @@ public class GraUserInterface extends javax.swing.JFrame
     
     private void materiasLista()
     {
-        cbMateria.addItem(" ");
+        cbMateria.addItem("Seleccione Materia");
         cbMateria.addItem("Sistemas Naturales");
         cbMateria.addItem("Biologia");
-        cbMateria.addItem("Microbiologia");
+        cbTipoPregunta.addItem("Selecione");
+        cbTipoPregunta.addItem("Seleccion Mulriple");
+        cbTipoPregunta.addItem("Verdadero o Falso");
     }
-        
+    
+    private void cbMateriasItemStateChanged(java.awt.event.ItemEvent evt)
+    {
+        if (evt.getStateChange() == ItemEvent.SELECTED )
+        {
+            if(this.cbMateria.getSelectedIndex()==1)
+            {
+                chTema1.setText("Celula");
+                chTema2.setText("Sistema Respiratorio");
+                chTema3.setText("Fotocintesis");
+            } else if(this.cbMateria.getSelectedIndex()==2)
+            {
+                chTema1.setText("Anatomia");
+                chTema2.setText("Mundo");
+                chTema3.setText("Hongos");               
+            } else if(this.cbMateria.getSelectedIndex()==0)
+            {
+                chTema1.setText("");
+                chTema2.setText("");
+                chTema3.setText(""); 
+
+            }
+        }
+    }
+
+    
 }
+    
 
