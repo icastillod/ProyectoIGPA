@@ -1,5 +1,9 @@
 package Vista;
+import Controlador.CargarListener;
+import Modelo.Cuestionario;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import javax.swing.*;
 
@@ -27,7 +31,7 @@ public class GraUserInterface extends javax.swing.JFrame
     private JCheckBox chTema2;
     private JCheckBox chTema3;
     private JComboBox cbTipoPregunta;
-    private JComboBox cbDetalleTipoPregunta;
+    //private JComboBox cbDetalleTipoPregunta;
     private JList lstTema;
     private JTextArea areaArchivo;
     private JScrollPane scrollFuente;
@@ -37,6 +41,10 @@ public class GraUserInterface extends javax.swing.JFrame
     private JTextField tfPregFacil;
     private JTextField tfPregMedia;
     private JTextField tfPregInteresante;
+    private CargarListener cuestion;
+    private int valFacil;
+    private int valMedia;
+    private int valInteresante;
     
         
     public GraUserInterface() 
@@ -148,6 +156,13 @@ public class GraUserInterface extends javax.swing.JFrame
             }
         });
         
+        btGenerarExam.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGenerarExamActionPerformed(evt);
+            }
+        });
+        
     }
     
     private void setPositions() 
@@ -196,7 +211,7 @@ public class GraUserInterface extends javax.swing.JFrame
         cbMateria.addItem("Sistemas Naturales");
         cbMateria.addItem("Biologia");
         cbTipoPregunta.addItem("Selecione");
-        cbTipoPregunta.addItem("Seleccion Mulriple");
+        cbTipoPregunta.addItem("Seleccion Multiple");
         cbTipoPregunta.addItem("Verdadero o Falso");
     }
     
@@ -208,7 +223,7 @@ public class GraUserInterface extends javax.swing.JFrame
             {
                 chTema1.setText("Celula");
                 chTema2.setText("Sistema Respiratorio");
-                chTema3.setText("Fotocintesis");
+                chTema3.setText("Fotosintesis");
             } else if(this.cbMateria.getSelectedIndex()==2)
             {
                 chTema1.setText("Anatomia");
@@ -223,8 +238,48 @@ public class GraUserInterface extends javax.swing.JFrame
             }
         }
     }
-
     
+    private void btGenerarExamActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        if(chTema1.isSelected() || chTema2.isSelected() || chTema3.isSelected())
+        {
+            if(chComplFacil.isSelected()) 
+            {
+                if (tfPregFacil.getText().equals(""))
+                {
+                    valFacil = 0;
+                }else{
+                    valFacil = new Integer(tfPregFacil.getText());
+                }
+            }
+            if(chComplMedia.isSelected())
+            {
+                if (tfPregMedia.getText().equals(""))
+                {
+                    valMedia = 0;
+                }else{
+                    valMedia = new Integer(tfPregMedia.getText());
+                }
+            }
+            if (chComplInteresante.isSelected())
+            {
+                if (tfPregInteresante.getText().equals(""))
+                {
+                    valInteresante = 0;
+                }else{
+                    valInteresante = new Integer(tfPregInteresante.getText());
+                }
+            }
+            CargarListener CargarListener = new CargarListener(valFacil, valMedia, valInteresante);
+            cuestion.actionPerformed(CargarListener);
+        }else{
+                JOptionPane.showMessageDialog(null, "Validar campos");
+            }
+            //ActionEvent CargarListener = null;
+            //cuestion.actionPerformed(CargarListener);
+                
+    }                                               
+   
 }
     
 
