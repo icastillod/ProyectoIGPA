@@ -1,6 +1,8 @@
 package Modelo;
 
+import Vista.GraUserInterface;
 import java.awt.Dialog;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -11,15 +13,25 @@ import javax.swing.JOptionPane;
  */
 public class Cuestionario extends Clonable 
 {
+    private PreguntaSelMultiple[] Preg;
+    private GraUserInterface areaArchivo;
+
+    
     
     public Cuestionario()
-    {
-
+    {   
+        
     }
     
-    public void crearCuestionario(int facil, int media, int interesante)
+    public Cuestionario(int facil, int media, int interesante)
     {
-        JOptionPane.showMessageDialog(null, facil + media + interesante);
+        int p = facil+media+interesante;
+        for(int i=0; i<p; i++)
+        {
+            Modelo.solucion examen;
+            examen = new solucion(i);
+        }      
+        
     }
     
 
@@ -31,6 +43,10 @@ public class Cuestionario extends Clonable
     public Cuestionario clonarCuestionario()
     {
 	return null;
+    }
+
+    private String toString(Pregunta preg) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

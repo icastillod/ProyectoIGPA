@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import Modelo.Pregunta;
 import Vista.GraUserInterface;
+import static java.lang.Integer.getInteger;
 
 /**
  *
@@ -14,6 +15,7 @@ public class CargarListener implements ActionListener
 {
     private GraUserInterface vista;
     private Cuestionario modelocuestionario;
+    private int nCuestion;
 
     public CargarListener(GraUserInterface vista, Cuestionario modelocuestionario) {
         this.vista = vista;
@@ -22,7 +24,10 @@ public class CargarListener implements ActionListener
 
     public CargarListener (int facil, int media, int interesante)
     {
-        JOptionPane.showMessageDialog(null, facil + media + interesante);
+        String ax = JOptionPane.showInputDialog(null, "Ingrese el numero de examenes a generar: ", "Examenes", JOptionPane.QUESTION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Error al generar los examenes", "Examenes", JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
+        //vista.imprirPreguntas(ax);
     }
     
     
