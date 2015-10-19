@@ -1,4 +1,5 @@
 package igpac2_GUICliente;
+import igpac2_Cliente.ThreadConectar;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -38,7 +39,7 @@ public class GUICliente extends javax.swing.JFrame
     private JComboBox cbTipoPregunta;
     private JComboBox cbDetalleTipoPregunta;
     private JList lstTema;
-    private JTextArea areaArchivo;
+    //private JTextArea areaArchivo;
     private JScrollPane scrollFuente;
     private JSeparator separador1;
     private JSeparator separador2;
@@ -54,7 +55,7 @@ public class GUICliente extends javax.swing.JFrame
      */
     public GUICliente() throws SQLException 
     {
-        setSize(1000, 700);
+        setSize(600, 700);
         setLocationRelativeTo(null);
 	this.setResizable(false);
 	inicializar();
@@ -63,7 +64,7 @@ public class GUICliente extends javax.swing.JFrame
 		
 	contenedor = getContentPane();
 	contenedor.setLayout(null);
-	areaArchivo.setEditable(false);
+	//areaArchivo.setEditable(false);
 	
 	setTitle("Generador Exámenes");
         lblTitulo.setText("GENERADOR DE EXAMENES");
@@ -76,7 +77,7 @@ public class GUICliente extends javax.swing.JFrame
         lblCantExamen.setText("Cantidad Exámenes:");
         lblTipoPregunta.setText("Tipo de Preguntas:");
         lblDetalleTipoPregunta.setText("Tipo Detalle Tipo Preguntas:");
-        areaArchivo.setText("Cuestionarios Generados");
+        //areaArchivo.setText("Cuestionarios Generados");
         btGenerarExam.setText("GENERAR EXAMEN");
         btcargarpreguntas.setText("CARGAR PREGUNTAS");
         lblCantExamen.setText("Cantidad de examenes:");
@@ -87,7 +88,7 @@ public class GUICliente extends javax.swing.JFrame
         chTema2.setText("");
         chTema3.setText("");
         
-        scrollFuente.setViewportView(areaArchivo);
+        //scrollFuente.setViewportView(areaArchivo);
 	contenedor.add(lblTitulo);
 	contenedor.add(lblUniversidad);
 	contenedor.add(lblMateria);
@@ -148,7 +149,7 @@ public class GUICliente extends javax.swing.JFrame
         cbTipoPregunta = new JComboBox();
         cbDetalleTipoPregunta = new JComboBox();
         lstTema = new JList();
-        areaArchivo = new JTextArea();
+        //areaArchivo = new JTextArea();
 	scrollFuente = new JScrollPane();
         separador1 = new JSeparator();
         separador2 = new JSeparator();
@@ -239,6 +240,22 @@ public class GUICliente extends javax.swing.JFrame
         }
         
     }
+    
+     /**
+     * Intenta realizar una conexi�n.<br>
+     * El proceso de conexi�n al servidor se hace en un hilo aparte usando la clase ThreadConectar.
+     * @param dialogo Es el di�logo que fue usado para recibir los datos
+     * @param nombre El nombre del jugador
+     * @param direccion Direcci�n donde se encuentra el servidor
+     * @param puerto Puerto usado para la conexi�n
+     */
+    public void conectar( DialogoConectar dialogo, String nombre, String direccion, int puerto )
+    {
+        dialogo.dispose( );
+        Thread t = new ThreadConectar( batallaNaval, this, nombre, direccion, puerto );
+        t.start( );
+    }
+    
     /**
      * Metodo para cargar en pantalla la interfaz grafica
      * @param main String[] args
