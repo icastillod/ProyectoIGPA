@@ -1,13 +1,10 @@
-/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * $Id: PanelDatosJuego.java 588 2006-11-04 15:10:29Z jvillalo2 $
- * Universidad de los Andes (Bogot� - Colombia)
- * Departamento de Ingenier�a de Sistemas y Computaci�n 
- * Licenciado bajo el esquema Academic Free License versi�n 2.1
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Universidad Central
  *
- * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
- * Ejercicio: n12_batallaNaval
- * Autor: Mario S�nchez - 24/02/2006
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Proyecto IGPA
+ * Ejercicio: 
+ * Autor: Ivonne , Gerardo
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  */
 
 package igpac2_GUICliente;
@@ -183,7 +180,7 @@ public class PanelDatos extends JPanel implements ActionListener
             }
             catch( NumberFormatException nfe )
             {
-                JOptionPane.showMessageDialog( dialogo, "El n�mero del puerto debe ser un n�mero" );
+                JOptionPane.showMessageDialog( dialogo, "El numero del puerto debe ser un numero" );
             }
         }
 

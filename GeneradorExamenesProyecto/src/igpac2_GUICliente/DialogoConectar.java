@@ -61,7 +61,7 @@ public class DialogoConectar extends JDialog
 
     /**
      * Intenta realizar una conexi�n
-     * @param nombre El nombre del jugador
+     * @param nombre El nombre del cliente
      * @param direccion Direcci�n donde se encuentra el servidor
      * @param puerto Puerto usado para la conexi�n
      */

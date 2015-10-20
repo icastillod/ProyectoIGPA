@@ -3,7 +3,7 @@
  *
  * Proyecto IGPA
  * Ejercicio: 
- * Autor: 
+ * Autor: Ivonne , Gerardo
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  */
 
