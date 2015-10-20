@@ -1,5 +1,5 @@
 package igpac2_GUICliente;
-import igpac2_Cliente.ThreadConectar;
+import igpac2_Cliente.Conexion;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -243,16 +243,15 @@ public class GUICliente extends javax.swing.JFrame
     
      /**
      * Intenta realizar una conexi�n.<br>
-     * El proceso de conexi�n al servidor se hace en un hilo aparte usando la clase ThreadConectar.
+ El proceso de conexi�n al servidor se hace en un hilo aparte usando la clase Conexion.
      * @param dialogo Es el di�logo que fue usado para recibir los datos
      * @param nombre El nombre del jugador
      * @param direccion Direcci�n donde se encuentra el servidor
      * @param puerto Puerto usado para la conexi�n
      */
-    public void conectar( DialogoConectar dialogo, String nombre, String direccion, int puerto )
+    public void conectar( String nombre, String direccion, int puerto )
     {
-        dialogo.dispose( );
-        Thread t = new ThreadConectar( batallaNaval, this, nombre, direccion, puerto );
+        Thread t = new Conexion( nombre, direccion, puerto );
         t.start( );
     }
     

@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 /**
  * Es el panel donde se ingresan los datos necesarios para iniciar una conexi�n
  */
-public class PanelDatosJuego extends JPanel implements ActionListener
+public class PanelDatos extends JPanel implements ActionListener
 {
     // -----------------------------------------------------------------
     // Constantes
@@ -107,7 +107,7 @@ public class PanelDatosJuego extends JPanel implements ActionListener
      * @param direccion Direcci�n del servidor para inicializar el panel
      * @param puerto Puerto para inicializar el panel
      */
-    public PanelDatosJuego( DialogoConectar dialogoConectar, String nombre, String direccion, int puerto )
+    public PanelDatos( DialogoConectar dialogoConectar, String nombre, String direccion, int puerto )
     {
         dialogo = dialogoConectar;
 

@@ -1,12 +1,9 @@
 /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * $Id: ThreadConectar.java 640 2006-11-14 06:06:59Z da-romer $ 
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
- * Todos los derechos reservados 2005 
+ * Universidad Central
  *
- * Proyecto Cupi2 
- * Ejercicio: n12_batallaNaval 
- * Autor: Mario Sánchez - 27/02/2006 
+ * Proyecto IGPA
+ * Ejercicio: 
+ * Autor: 
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
  */
 
@@ -20,7 +17,7 @@ import java.util.logging.Logger;
 /**
  * Esta clase implementa lo que se debe hacer en un hilo de ejecución cuando se quiere conectar al cliente con el servidor.
  */
-public class ThreadConectar extends Thread
+public class Conexion extends Thread
 {
     // -----------------------------------------------------------------
     // Atributos
@@ -57,15 +54,13 @@ public class ThreadConectar extends Thread
 
     /**
      * Construye el nuevo hilo y lo deja listo para conectarse al servidor
-     * @param juego Es una referencia al juego - juego != null
-     * @param interfaz Es una referencia a la ventana principal de la aplicación - interfaz != null
-     * @param nombreJugador El nombre que utilizará el jugador - nombreJugador != null
+     * @param nombreCliente El nombre que utilizará el jugador - nombreJugador != null
      * @param direccionServidor La dirección para localizar al servidor - direccionServidor != null
      * @param puertoServidor El puerto a través del cual se realizará la conexión con el servidor - puertoServidor != null
      */
-    public ThreadConectar( String nombreJugador, String direccionServidor, int puertoServidor )
+    public Conexion( String nombreCliente, String direccionServidor, int puertoServidor )
     {
-        nombre = nombreJugador;
+        nombre = nombreCliente;
         servidor = direccionServidor;
         puerto = puertoServidor;
     }
@@ -83,7 +78,7 @@ public class ThreadConectar extends Thread
         try {
             cliente.conectar( nombre, servidor, puerto );
         } catch (IOException ex) {
-            Logger.getLogger(ThreadConectar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
