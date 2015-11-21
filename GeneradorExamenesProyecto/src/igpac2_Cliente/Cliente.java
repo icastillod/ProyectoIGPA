@@ -74,7 +74,6 @@ public class Cliente
     {
         servidor = "localhost";
         puerto = 9999;
-        verificarInvariante( );
     }
 
     // -----------------------------------------------------------------
@@ -119,46 +118,8 @@ public class Cliente
             in = new BufferedReader( new InputStreamReader( canal.getInputStream( ) ) );
             
         	// iniciar el encuentro
-
-        verificarInvariante( );
     }
 
-
-    // -----------------------------------------------------------------
-    // Invariante
-    // -----------------------------------------------------------------
-
-    /**
-     * Verifica el invariante de la clase<br>
-     * <b>inv</b><br>
-     * estadoJuego pertenece a {SIN_CONECTAR, ESPERANDO_LOCAL, ESPERANDO_OPONENTE, ESPERANDO_RESPUESTA}<br>
-     * estadoJuego = SIN_CONECTAR => juegoTerminado = true<br>
-     * estadoJuego != SIN_CONECTAR => canal != null<br>
-     * estadoJuego != SIN_CONECTAR => out != null<br>
-     * estadoJuego != SIN_CONECTAR => in != null<br>
-     * estadoJuego != SIN_CONECTAR => tableroFlota != null<br>
-     * estadoJuego != SIN_CONECTAR => tableroAtaque != null<br>
-     * estadoJuego != SIN_CONECTAR => servidor != null<br>
-     * estadoJuego != SIN_CONECTAR => mensajesSinLeer != null<br>
-     * estadoJuego != SIN_CONECTAR => nombreJugador != null <br>
-     * estadoJuego != SIN_CONECTAR => puerto > 0
-     */
-    private void verificarInvariante( )
-    {
-        assert ( estadoJuego == SIN_CONECTAR || estadoJuego == ESPERANDO_LOCAL || estadoJuego == ESPERANDO_OPONENTE || estadoJuego == ESPERANDO_RESPUESTA ) : "El estado no es válido";
-        if( estadoJuego == SIN_CONECTAR )
-            assert juegoTerminado : "Valor inválido de atributo juegoTerminado";
-        else
-        {
-            assert ( canal == null ) : "Si el estado es SIN_CONECTAR, entonces no hay conexión";
-            assert ( out == null ) : "Si el estado es SIN_CONECTAR, entonces no hay conexión";
-            assert ( in == null ) : "Si el estado es SIN_CONECTAR, entonces no hay conexión";
-            assert ( servidor != null ) : "La dirección del servidor no puede ser null";
-            assert ( mensajesSinLeer != null ) : "La lista de mensajes no puede ser null";
-            assert ( nombreJugador != null ) : "El nombre del jugador no puede ser null";
-            assert ( puerto > 0 ) : "El puerto debe ser mayor a 0";
-        }
-    }
 
     // -----------------------------------------------------------------
     // Puntos de Extensión
