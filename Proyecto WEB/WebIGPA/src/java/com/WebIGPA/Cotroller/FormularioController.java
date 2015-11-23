@@ -20,7 +20,6 @@ import javax.enterprise.context.Dependent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -54,25 +53,29 @@ public class FormularioController implements Serializable {
     
     private Materia materia;
     private Tema tema;
-    private Tipopregunta tPregunta;
     private Pregunta pregunta;
     private Respuesta respuesta;
+    private Tipopregunta tipopregunta;
+    
     private ArrayList<Materia> listMaterias;
     private ArrayList<Tema> listTemas;
     private ArrayList<Pregunta> listPregunta;
     private ArrayList<Respuesta> listRepuesta;
-    private ArrayList<Tipopregunta> listTipoPreguta;
+    private ArrayList<Tipopregunta> listTipoPregutaFV;
+    private ArrayList<Tipopregunta> listTipoPregutaSMU;
 
-    /**
-     * Creates a new instance of FormularioController
-     */
     public FormularioController() {
         materia = new Materia();
         tema = new Tema();
+        respuesta = new Respuesta();
+        tipopregunta = new Tipopregunta();
+
         
         listMaterias = new ArrayList<Materia>();
         listTemas = new ArrayList<Tema>();
         listPregunta = new ArrayList<Pregunta>();
+        listTipoPregutaFV = new ArrayList<Tipopregunta>();
+        listTipoPregutaSMU = new ArrayList<Tipopregunta>();
     }
 
     @PostConstruct
@@ -102,6 +105,24 @@ public class FormularioController implements Serializable {
         System.out.println("gg: " + listTemas.size());
     }
 
+    public void cargarTipoPregunta(ValueChangeEvent event) {
+        Integer TipoPreguntaSelect = ((Integer) event.getNewValue());
+        System.out.println(TipoPreguntaSelect);
+        ArrayList<Tipopregunta> auxTipo = new ArrayList<Tipopregunta>();
+        auxTipo.addAll(tipopreguntaFacade.findAll());
+        System.out.println("cantidad: " + tipopreguntaFacade.count());
+        System.out.println("Tipos de Pregunta: " + auxTipo.size());
+        for (int i = 0; i < auxTipo.size(); i++) {
+            if (auxTipo.get(i).getIdTipoPregunta().equals(tema.getIdTema())) {
+                listTipoPregutaFV.add(auxTipo.get(i));
+            }else
+                listTipoPregutaSMU.add(auxTipo.get(i));
+        }
+        System.out.println("TT: " + listTipoPregutaFV.size());
+        System.out.println("TT: " + listTipoPregutaSMU.size());
+    }
+    
+    
     public void cargarTipo(ValueChangeEvent event) {
         Integer temaSelected = ((Integer) event.getNewValue());
         ArrayList<Pregunta> aux = new ArrayList<Pregunta>();
@@ -112,6 +133,31 @@ public class FormularioController implements Serializable {
             }
         }
     }
+    
+   /* public void cargarComplejidad(ValueChangeEvent event) {
+        Integer complefidadFacil = ((Integer) event.getNewValue());
+        Integer complefidadMedia = ((Integer) event.getNewValue());
+        Integer complefidadDificil = ((Integer) event.getNewValue());
+        System.out.println(complefidadFacil);
+        System.out.println(complefidadMedia);
+        System.out.println(complefidadDificil);
+        ArrayList<Pregunta> facil = new ArrayList<Pregunta>();
+        ArrayList<Pregunta> media = new ArrayList<Pregunta>();
+        ArrayList<Pregunta> dificil = new ArrayList<Pregunta>();
+        facil.addAll(preguntaFacade.findAll());
+        media.addAll(preguntaFacade.findAll());
+        dificil.addAll(preguntaFacade.findAll());
+        System.out.println("cantidad: " + preguntaFacade.count());
+        materia.setIdMateria(materiaSelect);
+        System.out.println("temas: " + aux.size());
+        for (int i = 0; i < aux.size(); i++) {
+            if (aux.get(i).getIdMateria().getIdMateria().equals(materia.getIdMateria())) {
+                listTemas.add(aux.get(i));
+            }
+        }
+        System.out.println("gg: " + listTemas.size());
+    }
+    */
 
     public Materia getMateria() {
         return materia;
@@ -153,14 +199,6 @@ public class FormularioController implements Serializable {
         this.listPregunta = listPregunta;
     }
 
-    public Tipopregunta gettPregunta() {
-        return tPregunta;
-    }
-
-    public void settPregunta(Tipopregunta tPregunta) {
-        this.tPregunta = tPregunta;
-    }
-
     public Pregunta getPregunta() {
         return pregunta;
     }
@@ -177,12 +215,35 @@ public class FormularioController implements Serializable {
         this.listRepuesta = listRepuesta;
     }
 
-    public ArrayList<Tipopregunta> getListTipoPreguta() {
-        return listTipoPreguta;
+    public ArrayList<Tipopregunta> getListTipoPregutaFV() {
+        return listTipoPregutaFV;
     }
 
-    public void setListTipoPreguta(ArrayList<Tipopregunta> listTipoPreguta) {
-        this.listTipoPreguta = listTipoPreguta;
+    public void setListTipoPregutaFV(ArrayList<Tipopregunta> listTipoPregutaFV) {
+        this.listTipoPregutaFV = listTipoPregutaFV;
     }
 
+    public ArrayList<Tipopregunta> getListTipoPregutaSMU() {
+        return listTipoPregutaSMU;
+    }
+
+    public void setListTipoPregutaSMU(ArrayList<Tipopregunta> listTipoPregutaSMU) {
+        this.listTipoPregutaSMU = listTipoPregutaSMU;
+    }
+
+    public Respuesta getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(Respuesta respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public Tipopregunta getTipopregunta() {
+        return tipopregunta;
+    }
+
+    public void setTipopregunta(Tipopregunta tipopregunta) {
+        this.tipopregunta = tipopregunta;
+    }  
 }

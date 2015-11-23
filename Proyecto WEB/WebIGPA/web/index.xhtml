@@ -27,9 +27,31 @@
                             <f:ajax event="change" render="idTema"></f:ajax>
                         </h:selectOneMenu>
                         <h:outputLabel value="Temas" />
-                        <h:selectOneMenu id="idTema" value="#{formularioController.tema.idTema}">
+                        <h:selectOneMenu id="idTema" value="#{formularioController.tema.idTema}" valueChangeListener="#{formularioController.cargarTipoPregunta}">
                             <f:selectItem itemValue="0" itemLabel="----Selec----" />
                             <f:selectItems value="#{formularioController.listTemas}" var="varTemas" itemLabel="#{varTemas.nombreTema}" itemValue="#{varTemas.idTema}"></f:selectItems>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Tipo de Pregunta" />
+                        <h:selectOneMenu id="idTipopreguntaFV" value="#{formularioController.tipopregunta}">
+                            <p>
+                            <h:outputLabel value="Falso o Verdadero" />
+                            </p>
+                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                            <f:selectItems value="#{formularioController.listTipoPregutaFV}" var="varTipoPreguntaFV" itemLabel="#{varTipoPreguntaFV.nombreTipoPregunta}" itemValue="#{varTipoPreguntaFV.idTipoPregunta}"></f:selectItems>
+                        </h:selectOneMenu>
+                        <h:selectOneMenu id="idTipopreguntaSMU" value="#{formularioController.tipopregunta}">
+                            <p>
+                            <h:outputLabel value="Seleccon Multiple Unica Respuesta" />
+                            </p>
+                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                            <f:selectItems value="#{formularioController.listTipoPregutaSMU}" var="varTipoPreguntaSMU" itemLabel="#{varTipoPreguntaSMU.nombreTipoPregunta}" itemValue="#{varTipoPreguntaSMU.idTipoPregunta}"></f:selectItems>
+                        </h:selectOneMenu>
+                        <h:selectOneMenu value="">
+                            <p>
+                            <h:outputLabel value="Seleccon Multiple Multiple Respuesta"/>
+                            </p>
+                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                            <f:selectItem itemValue="2" itemLabel="2" />
                         </h:selectOneMenu>
                         <h:outputLabel value="Complejidad" />
                         <h:selectOneMenu value="">
@@ -47,29 +69,7 @@
                             <f:selectItem itemValue="0" itemLabel="--Selec--" />
                             <f:selectItem itemValue="2" itemLabel="2" />
                         </h:selectOneMenu>
-                        <h:outputLabel value="Tipo de Pregunta" />
-                        <h:selectOneMenu value="">
-                            <p>
-                            <h:outputLabel value="Falso o Verdadero" />
-                            </p>
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                        </h:selectOneMenu>
-                        <h:selectOneMenu value="">
-                            <p>
-                            <h:outputLabel value="Seleccon Multiple Unica Respuesta" />
-                            </p>
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                        </h:selectOneMenu>
-                        <h:selectOneMenu value="">
-                            <p>
-                            <h:outputLabel value="Seleccon Multiple Multiple Respuesta"/>
-                            </p>
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Cantidad de preguntas" />
+                       <h:outputLabel value="Cantidad de preguntas" />
                        <h:inputText />
                        <h:outputLabel value="Cantidad de examenes" />
                        <h:inputText />
