@@ -31,55 +31,55 @@
                     <f:selectItem itemValue="0" itemLabel="----Selec----" />
                     <f:selectItems value="#{formularioController.listTemas}" var="varTemas" itemLabel="#{varTemas.nombreTema}" itemValue="#{varTemas.idTema}"></f:selectItems>
                     <f:ajax event="change" render="idPregunta"></f:ajax>
+                    <f:ajax event="change" render="idPregunta2"></f:ajax>
+                    <f:ajax event="change" render="idPregunta3"></f:ajax>
+                    <f:ajax event="change" render="idPregunta4"></f:ajax>
+                    <f:ajax event="change" render="idPregunta5"></f:ajax>
                 </h:selectOneMenu>
                 <h:outputLabel value="Tipo de Pregunta" />
                 <h:column>
                     <h:outputLabel value="Falso o Verdadero" /><br/><br/>
-                    <h:outputLabel value="#{formularioController.listTipoPregutaFV.size}" rendered="#{formularioController.listTipoPregutaFV.size != 0}"/>
-                    <!--h:selectOneMenu id="idPregunta" value="#//{formularioController.pregunta.idPregunta}" valueChangeListener="#//{formularioController.cargarComplejidad}">
-                        <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                        <f:selectItems value="#//{formularioController.listTipoPregutaFV}" var="varTipoPreguntaFV" itemLabel="#//{varTipoPreguntaFV.}" itemValue="#//{varTipoPreguntaFV.intValue}"></f:selectItems>
-                    </h:selectOneMenu-->
+                    <h:outputText id="idPregunta" value="#{formularioController.cantidadPreguntasFV}" /><br/><br/>
                 </h:column>
                 <h:column>
                     <h:outputLabel value="Seleccon Multiple Unica Respuesta"/><br/><br/>
-                    <h:selectOneMenu value="">
-                        <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                        <f:selectItem itemValue="2" itemLabel="1" />
-                        <f:selectItem itemValue="2" itemLabel="2" />
-                        <f:selectItem itemValue="2" itemLabel="3" />
-                        <f:selectItem itemValue="2" itemLabel="4" />
-                    </h:selectOneMenu>
+                    <h:outputText id="idPregunta2" value="#{formularioController.cantidadPreguntasSM}" /><br/><br/>
                 </h:column>
-                <h:selectOneMenu value="">
+                <!--h:selectOneMenu value="">
                     <p>
                     <h:outputLabel value="Seleccon Multiple Multiple Respuesta"/>
                     </p>
-                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                    <f:selectItem itemValue="2" itemLabel="2" />
-                </h:selectOneMenu>
+                    <f:selectItem itemValue="0" itemLabel=0" />
+                </h:selectOneMenu-->
                 <h:outputLabel value="Complejidad" />
-                <h:selectOneMenu value="">
-                    <h:outputLabel value="Facil" />
-                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                    <f:selectItem itemValue="2" itemLabel="2" />
-                </h:selectOneMenu>
-                <h:selectOneMenu value="">
-                    <h:outputLabel value="Media" />
-                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                    <f:selectItem itemValue="2" itemLabel="2" />
-                </h:selectOneMenu>
-                <h:selectOneMenu value="">
-                    <h:outputLabel value="Dificil" />
-                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                    <f:selectItem itemValue="2" itemLabel="2" />
-                </h:selectOneMenu>
+                <h:column>
+                    <h:outputLabel value="Facil"/><br/><br/>
+                    <h:outputText id="idPregunta3" value="#{formularioController.complejidadSeleccionadaF}" /><br/><br/>
+                    <h:inputText value="#{formularioController.complejidadPreguntaF}" >
+                        <f:ajax event="blur" render="resultado"></f:ajax>
+                    </h:inputText>
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="Media"/><br/><br/>
+                    <h:outputText id="idPregunta4" value="#{formularioController.complejidadSeleccionadaM}" /><br/><br/>
+                    <h:inputText value="#{formularioController.complejidadPreguntaM}" >
+                        <f:ajax event="blur" render="resultado"></f:ajax>
+                    </h:inputText>
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="Dificil"/><br/><br/>
+                    <h:outputText id="idPregunta5" value="#{formularioController.complejidadSeleccionadaD}" /><br/><br/>
+                    <h:inputText value="#{formularioController.complejidadPreguntaD}" >
+                        <f:ajax event="blur" render="resultado"></f:ajax>
+                    </h:inputText>
+                </h:column>
                 <h:outputLabel value="Cantidad de preguntas" />
-                <h:inputText />
+                <h:outputLabel id="resultado" value="#{formularioController.complejidadPreguntaF + formularioController.complejidadPreguntaM + formularioController.complejidadPreguntaD}"/>
                 <h:outputLabel value="Cantidad de examenes" />
                 <h:inputText />
             </h:panelGrid>
             <h:commandButton action="#{formularioController.comunicar()}" value="Generar Examen"/>
+           
             </p>
         </h:form>
     </h:body>
