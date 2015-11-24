@@ -16,65 +16,70 @@
             </h2>
             <p>
             <h:panelGrid styleClass="panelGridCenter" style="border-color: background;text-align: center;margin:0 auto"  id="panel" columns="4" border="1"
-                             cellpadding="10" cellspacing="1">
-                        <f:facet name="header">
-                           <h:outputText value="Parametros del Examen"/>
-                        </f:facet>
-                        <h:outputLabel value="Materia" />
-                        <h:selectOneMenu value="#{formularioController.materia.idMateria}" valueChangeListener="#{formularioController.pruebaTema}">
-                            <f:selectItem itemValue="0" itemLabel="----Selec----" />
-                            <f:selectItems value="#{formularioController.listMaterias}" var="varMateria" itemLabel="#{varMateria.nombreMateria}" itemValue="#{varMateria.idMateria}"></f:selectItems>
-                            <f:ajax event="change" render="idTema"></f:ajax>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Temas" />
-                        <h:selectOneMenu id="idTema" value="#{formularioController.tema.idTema}" valueChangeListener="#{formularioController.cargarTipoPregunta}">
-                            <f:selectItem itemValue="0" itemLabel="----Selec----" />
-                            <f:selectItems value="#{formularioController.listTemas}" var="varTemas" itemLabel="#{varTemas.nombreTema}" itemValue="#{varTemas.idTema}"></f:selectItems>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Tipo de Pregunta" />
-                        <h:selectOneMenu id="idTipopreguntaFV" value="#{formularioController.tipopregunta}">
-                            <p>
-                            <h:outputLabel value="Falso o Verdadero" />
-                            </p>
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItems value="#{formularioController.listTipoPregutaFV}" var="varTipoPreguntaFV" itemLabel="#{varTipoPreguntaFV.nombreTipoPregunta}" itemValue="#{varTipoPreguntaFV.idTipoPregunta}"></f:selectItems>
-                        </h:selectOneMenu>
-                        <h:selectOneMenu id="idTipopreguntaSMU" value="#{formularioController.tipopregunta}">
-                            <p>
-                            <h:outputLabel value="Seleccon Multiple Unica Respuesta" />
-                            </p>
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItems value="#{formularioController.listTipoPregutaSMU}" var="varTipoPreguntaSMU" itemLabel="#{varTipoPreguntaSMU.nombreTipoPregunta}" itemValue="#{varTipoPreguntaSMU.idTipoPregunta}"></f:selectItems>
-                        </h:selectOneMenu>
-                        <h:selectOneMenu value="">
-                            <p>
-                            <h:outputLabel value="Seleccon Multiple Multiple Respuesta"/>
-                            </p>
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Complejidad" />
-                        <h:selectOneMenu value="">
-                            <h:outputLabel value="Facil" />
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                        </h:selectOneMenu>
-                        <h:selectOneMenu value="">
-                            <h:outputLabel value="Media" />
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                        </h:selectOneMenu>
-                        <h:selectOneMenu value="">
-                            <h:outputLabel value="Dificil" />
-                            <f:selectItem itemValue="0" itemLabel="--Selec--" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                        </h:selectOneMenu>
-                       <h:outputLabel value="Cantidad de preguntas" />
-                       <h:inputText />
-                       <h:outputLabel value="Cantidad de examenes" />
-                       <h:inputText />
-                       </h:panelGrid>
-                    <h:commandButton action="#{formularioController.comunicar()}" value="Generar Examen"/>
+                         cellpadding="10" cellspacing="1">
+                <f:facet name="header">
+                    <h:outputText value="Parametros del Examen"/>
+                </f:facet>
+                <h:outputLabel value="Materia" />
+                <h:selectOneMenu value="#{formularioController.materia.idMateria}" valueChangeListener="#{formularioController.pruebaTema}">
+                    <f:selectItem itemValue="0" itemLabel="----Selec----" />
+                    <f:selectItems value="#{formularioController.listMaterias}" var="varMateria" itemLabel="#{varMateria.nombreMateria}" itemValue="#{varMateria.idMateria}"></f:selectItems>
+                    <f:ajax event="change" render="idTema"></f:ajax>
+                </h:selectOneMenu>
+                <h:outputLabel value="Temas" />
+                <h:selectOneMenu id="idTema" value="#{formularioController.tema.idTema}" valueChangeListener="#{formurioCotroller.cargarTipo}">
+                    <f:selectItem itemValue="0" itemLabel="----Selec----" />
+                    <f:selectItems value="#{formularioController.listTemas}" var="varTemas" itemLabel="#{varTemas.nombreTema}" itemValue="#{varTemas.idTema}"></f:selectItems>
+                    <f:ajax event="change" render="idPregunta"></f:ajax>
+                </h:selectOneMenu>
+                <h:outputLabel value="Tipo de Pregunta" />
+                <h:column>
+                    <h:outputLabel value="Falso o Verdadero" /><br/><br/>
+                    <h:outputLabel value="#{formularioController.listTipoPregutaFV.size}" rendered="#{formularioController.listTipoPregutaFV.size != 0}"/>
+                    <!--h:selectOneMenu id="idPregunta" value="#//{formularioController.pregunta.idPregunta}" valueChangeListener="#//{formularioController.cargarComplejidad}">
+                        <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                        <f:selectItems value="#//{formularioController.listTipoPregutaFV}" var="varTipoPreguntaFV" itemLabel="#//{varTipoPreguntaFV.}" itemValue="#//{varTipoPreguntaFV.intValue}"></f:selectItems>
+                    </h:selectOneMenu-->
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="Seleccon Multiple Unica Respuesta"/><br/><br/>
+                    <h:selectOneMenu value="">
+                        <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                        <f:selectItem itemValue="2" itemLabel="1" />
+                        <f:selectItem itemValue="2" itemLabel="2" />
+                        <f:selectItem itemValue="2" itemLabel="3" />
+                        <f:selectItem itemValue="2" itemLabel="4" />
+                    </h:selectOneMenu>
+                </h:column>
+                <h:selectOneMenu value="">
+                    <p>
+                    <h:outputLabel value="Seleccon Multiple Multiple Respuesta"/>
+                    </p>
+                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                    <f:selectItem itemValue="2" itemLabel="2" />
+                </h:selectOneMenu>
+                <h:outputLabel value="Complejidad" />
+                <h:selectOneMenu value="">
+                    <h:outputLabel value="Facil" />
+                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                    <f:selectItem itemValue="2" itemLabel="2" />
+                </h:selectOneMenu>
+                <h:selectOneMenu value="">
+                    <h:outputLabel value="Media" />
+                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                    <f:selectItem itemValue="2" itemLabel="2" />
+                </h:selectOneMenu>
+                <h:selectOneMenu value="">
+                    <h:outputLabel value="Dificil" />
+                    <f:selectItem itemValue="0" itemLabel="--Selec--" />
+                    <f:selectItem itemValue="2" itemLabel="2" />
+                </h:selectOneMenu>
+                <h:outputLabel value="Cantidad de preguntas" />
+                <h:inputText />
+                <h:outputLabel value="Cantidad de examenes" />
+                <h:inputText />
+            </h:panelGrid>
+            <h:commandButton action="#{formularioController.comunicar()}" value="Generar Examen"/>
             </p>
         </h:form>
     </h:body>
